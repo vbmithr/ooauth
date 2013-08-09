@@ -1,0 +1,44 @@
+# OASIS_START
+# DO NOT EDIT (digest: 11b6de7065804268a27362eb3b8c6f0d)
+version = "0.1"
+description = "OAuth client and server library"
+requires = "cryptokit netstring-pcre netstring nethttpd"
+archive(byte) = "ooauth.cma"
+archive(byte, plugin) = "ooauth.cma"
+archive(native) = "ooauth.cmxa"
+archive(native, plugin) = "ooauth.cmxs"
+exists_if = "ooauth.cma"
+package "server_ocamlnet" (
+ version = "0.1"
+ description = "OAuth client and server library"
+ requires = "ooauth netcgi2"
+ archive(byte) = "server_ocamlnet.cma"
+ archive(byte, plugin) = "server_ocamlnet.cma"
+ archive(native) = "server_ocamlnet.cmxa"
+ archive(native, plugin) = "server_ocamlnet.cmxs"
+ exists_if = "server_ocamlnet.cma"
+)
+
+package "client_ocurl" (
+ version = "0.1"
+ description = "OAuth client and server library"
+ requires = "ooauth curl"
+ archive(byte) = "client_ocurl.cma"
+ archive(byte, plugin) = "client_ocurl.cma"
+ archive(native) = "client_ocurl.cmxa"
+ archive(native, plugin) = "client_ocurl.cmxs"
+ exists_if = "client_ocurl.cma"
+)
+
+package "client_ocamlnet" (
+ version = "0.1"
+ description = "OAuth client and server library"
+ requires = "ooauth netclient"
+ archive(byte) = "client_ocamlnet.cma"
+ archive(byte, plugin) = "client_ocamlnet.cma"
+ archive(native) = "client_ocamlnet.cmxa"
+ archive(native, plugin) = "client_ocamlnet.cmxs"
+ exists_if = "client_ocamlnet.cma"
+)
+# OASIS_STOP
+

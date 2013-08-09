@@ -1,0 +1,81 @@
+OASISFormat: 0.3
+Name:        OOAuth
+Version:     0.1
+Synopsis:    OAuth client and server library
+Authors:     Jake Donham, Vincent Bernardoff
+License:     ISC
+Plugins:     META (0.3), DevFiles (0.3)
+BuildTools:  ocamlbuild
+
+Library ooauth
+  Path: common
+  Findlibname: ooauth
+  Modules: Oauth_base32, Oauth_common, Oauth_util, Oauth_client, Oauth_server
+  BuildDepends:	cryptokit, netstring-pcre, netstring, nethttpd
+
+Flag client_ocurl
+  Description: build the ocurl client
+  Default: true
+
+Flag client_ocamlnet
+  Description: build the ocamlnet client
+  Default: true
+
+Flag server_ocamlnet
+  Description: build the ocamlnet server
+  Default: true
+
+Library client_ocurl
+  Build$: flag(client_ocurl)
+  Install$: flag(client_ocurl)
+  Path: client_ocurl
+  Findlibname: client_ocurl
+  FindlibParent: ooauth
+  BuildDepends: ooauth, curl
+  Modules: Oauth_ocurl_http_client
+
+Library client_ocamlnet
+  Build$: flag(client_ocamlnet)
+  Install$: flag(client_ocamlnet)
+  Path: client_ocamlnet
+  Findlibname: client_ocamlnet
+  FindlibParent: ooauth
+  BuildDepends: ooauth, netclient
+  Modules: Oauth_netclient_http_client
+
+Library server_ocamlnet
+  Build$: flag(server_ocamlnet)
+  Install$: flag(server_ocamlnet)
+  Path: server_ocamlnet
+  Findlibname: server_ocamlnet
+  FindlibParent: ooauth
+  BuildDepends: ooauth, netcgi2
+  Modules: Oauth_netcgi_http
+
+Flag testprogs
+  Description: build the test programs
+  Default: true
+
+Executable termie_client
+  Path:               examples/term.ie
+  MainIs:             client.ml
+  Build$:             flag(testprogs)
+  CompiledObject:     best
+  Install:            false
+  BuildDepends:       crypto_keys, ooauth.client_ocamlnet
+
+Executable localhost_client
+  Path:               examples/localhost
+  MainIs:             client.ml
+  Build$:             flag(testprogs)
+  CompiledObject:     best
+  Install:            false
+  BuildDepends:       crypto_keys, ooauth.client_ocamlnet
+
+Executable localhost_server
+  Path:               examples/localhost
+  MainIs:             server.ml
+  Build$:             flag(testprogs)
+  CompiledObject:     best
+  Install:            false
+  BuildDepends:       crypto_keys, ooauth.server_ocamlnet

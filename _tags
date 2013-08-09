@@ -1,4 +1,91 @@
-<*.ml*> : debug, package(cryptokit), package(netstring-pcre), package(pcre), package(nethttpd)
-<oauth_ocurl_http_client.ml> : package(curl)
-<oauth_netclient_http_client.ml> : package(netclient)
-<oauth_netcgi_http.ml> : package(netcgi2)
+# OASIS_START
+# DO NOT EDIT (digest: 59d12e3b2a5076176b275531cdf36713)
+# Ignore VCS directories, you can use the same kind of rule outside 
+# OASIS_START/STOP if you want to exclude directories that contains 
+# useless stuff for the build process
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library ooauth
+"common/ooauth.cmxs": use_ooauth
+<common/*.ml{,i}>: pkg_cryptokit
+<common/*.ml{,i}>: pkg_netstring-pcre
+<common/*.ml{,i}>: pkg_netstring
+<common/*.ml{,i}>: pkg_nethttpd
+# Library client_ocurl
+"client_ocurl/client_ocurl.cmxs": use_client_ocurl
+<client_ocurl/*.ml{,i}>: use_ooauth
+<client_ocurl/*.ml{,i}>: pkg_curl
+<client_ocurl/*.ml{,i}>: pkg_cryptokit
+<client_ocurl/*.ml{,i}>: pkg_netstring-pcre
+<client_ocurl/*.ml{,i}>: pkg_netstring
+<client_ocurl/*.ml{,i}>: pkg_nethttpd
+# Library client_ocamlnet
+"client_ocamlnet/client_ocamlnet.cmxs": use_client_ocamlnet
+<client_ocamlnet/*.ml{,i}>: use_ooauth
+<client_ocamlnet/*.ml{,i}>: pkg_netclient
+<client_ocamlnet/*.ml{,i}>: pkg_cryptokit
+<client_ocamlnet/*.ml{,i}>: pkg_netstring-pcre
+<client_ocamlnet/*.ml{,i}>: pkg_netstring
+<client_ocamlnet/*.ml{,i}>: pkg_nethttpd
+# Library server_ocamlnet
+"server_ocamlnet/server_ocamlnet.cmxs": use_server_ocamlnet
+<server_ocamlnet/*.ml{,i}>: use_ooauth
+<server_ocamlnet/*.ml{,i}>: pkg_netcgi2
+<server_ocamlnet/*.ml{,i}>: pkg_cryptokit
+<server_ocamlnet/*.ml{,i}>: pkg_netstring-pcre
+<server_ocamlnet/*.ml{,i}>: pkg_netstring
+<server_ocamlnet/*.ml{,i}>: pkg_nethttpd
+# Executable termie_client
+<examples/term.ie/client.{native,byte}>: use_client_ocamlnet
+<examples/term.ie/client.{native,byte}>: use_ooauth
+<examples/term.ie/client.{native,byte}>: pkg_crypto_keys
+<examples/term.ie/client.{native,byte}>: pkg_netclient
+<examples/term.ie/client.{native,byte}>: pkg_cryptokit
+<examples/term.ie/client.{native,byte}>: pkg_netstring-pcre
+<examples/term.ie/client.{native,byte}>: pkg_netstring
+<examples/term.ie/client.{native,byte}>: pkg_nethttpd
+<examples/term.ie/*.ml{,i}>: use_client_ocamlnet
+<examples/term.ie/*.ml{,i}>: use_ooauth
+<examples/term.ie/*.ml{,i}>: pkg_crypto_keys
+<examples/term.ie/*.ml{,i}>: pkg_netclient
+<examples/term.ie/*.ml{,i}>: pkg_cryptokit
+<examples/term.ie/*.ml{,i}>: pkg_netstring-pcre
+<examples/term.ie/*.ml{,i}>: pkg_netstring
+<examples/term.ie/*.ml{,i}>: pkg_nethttpd
+# Executable localhost_client
+<examples/localhost/client.{native,byte}>: use_client_ocamlnet
+<examples/localhost/client.{native,byte}>: use_ooauth
+<examples/localhost/client.{native,byte}>: pkg_crypto_keys
+<examples/localhost/client.{native,byte}>: pkg_netclient
+<examples/localhost/client.{native,byte}>: pkg_cryptokit
+<examples/localhost/client.{native,byte}>: pkg_netstring-pcre
+<examples/localhost/client.{native,byte}>: pkg_netstring
+<examples/localhost/client.{native,byte}>: pkg_nethttpd
+<examples/localhost/*.ml{,i}>: use_client_ocamlnet
+<examples/localhost/*.ml{,i}>: pkg_netclient
+# Executable localhost_server
+<examples/localhost/server.{native,byte}>: use_server_ocamlnet
+<examples/localhost/server.{native,byte}>: use_ooauth
+<examples/localhost/server.{native,byte}>: pkg_crypto_keys
+<examples/localhost/server.{native,byte}>: pkg_netcgi2
+<examples/localhost/server.{native,byte}>: pkg_cryptokit
+<examples/localhost/server.{native,byte}>: pkg_netstring-pcre
+<examples/localhost/server.{native,byte}>: pkg_netstring
+<examples/localhost/server.{native,byte}>: pkg_nethttpd
+<examples/localhost/*.ml{,i}>: use_server_ocamlnet
+<examples/localhost/*.ml{,i}>: use_ooauth
+<examples/localhost/*.ml{,i}>: pkg_crypto_keys
+<examples/localhost/*.ml{,i}>: pkg_netcgi2
+<examples/localhost/*.ml{,i}>: pkg_cryptokit
+<examples/localhost/*.ml{,i}>: pkg_netstring-pcre
+<examples/localhost/*.ml{,i}>: pkg_netstring
+<examples/localhost/*.ml{,i}>: pkg_nethttpd
+# OASIS_STOP
